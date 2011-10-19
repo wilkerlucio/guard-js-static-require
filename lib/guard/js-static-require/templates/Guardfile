@@ -1,0 +1,1 @@
+guard "js-static-require", :libs => ["vendor", "lib"], :updates => "examples/index.html"
