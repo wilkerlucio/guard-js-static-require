@@ -57,7 +57,11 @@ module Guard
     end
 
     def scan_path(path)
-      [path]
+      if File.directory? path
+        Dir.glob(path + "/**/*.js")
+      else
+        [path]
+      end
     end
 
     def contains_new_path?(paths)
