@@ -1,5 +1,5 @@
 module Guard
-  module JsStaticRequire
+  module JsStaticRequireVersion
     VERSION = "0.0.1"
   end
 end

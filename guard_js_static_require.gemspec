@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "guard/js-static-require/version"
+require "guard/js_static_require/version"
 
 Gem::Specification.new do |s|
   s.name        = "guard-js-static-require"
-  s.version     = Guard::JsStaticRequire::VERSION
+  s.version     = Guard::JsStaticRequireVersion::VERSION
   s.authors     = ["Wilker Lucio"]
   s.email       = ["wilkerlucio@gmail.com"]
   s.homepage    = ""
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
+  s.add_development_dependency "guard-minitest"
+  s.add_development_dependency "growl_notify"
   # s.add_runtime_dependency "rest-client"
 end

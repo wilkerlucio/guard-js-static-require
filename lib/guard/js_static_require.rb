@@ -49,14 +49,15 @@ module Guard
     end
 
     def reset_files
-      @files = scan_libs
+      @files = scan_libs(options[:libs])
     end
 
-    def scan_libs
-      options[:libs].map { |path| scan_path(path) }.flatten
+    def scan_libs(libs)
+      libs.map { |path| scan_path(path) }.flatten
     end
 
     def scan_path(path)
+      [path]
     end
 
     def contains_new_path?(paths)
