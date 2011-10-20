@@ -5,6 +5,7 @@ module Guard
   class Jsstaticrequire < Guard
     DEFAULT_OPTIONS = {
       :build_on_start => false,
+      :libs           => [],
       :start_delim    => /<!-- START JS_STATIC_REQUIRE -->/,
       :end_delim      => /<!-- END JS_STATIC_REQUIRE -->/
     }
@@ -16,6 +17,12 @@ module Guard
     # @param [Hash] options the custom Guard options
     def initialize(watchers = [], options = {})
       defaults = DEFAULT_OPTIONS.clone
+
+      @files = []
+
+      options[:libs].each do |lib|
+        watchers << ::Guard::Watcher.new(%r{^#{ lib }/(.+\.js)$})
+      end
 
       super(watchers, defaults.merge(options))
     end
@@ -41,16 +48,20 @@ module Guard
     # This method should be principally used for long action like running all specs/tests/...
     # @raise [:task_has_failed] when run_all has failed
     def run_all
-      puts "Injecting scripts on #{options[:updates]}"
+      UI.info "Injecting scripts on #{options[:updates]}"
+
       reset_files
       inject_script_load
+
+      Notifier.notify("Success injected scripts on #{options[:updates]}")
     end
 
     # Called on file(s) modifications that the Guard watches.
     # @param [Array<String>] paths the changes files or paths
     # @raise [:task_has_failed] when run_on_change has failed
     def run_on_change(paths)
-      run_all if contains_new_path?(paths)
+      return unless contains_new_path?(paths)
+      run_all
     end
 
     # Called on file(s) deletions that the Guard watches.
@@ -88,7 +99,7 @@ module Guard
     end
 
     def contains_new_path?(paths)
-      paths.all? { |path| @files.include? path }
+      (paths - @files).length > 0
     end
 
     def inject(value, source)
