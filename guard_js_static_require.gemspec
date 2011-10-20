@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "guard/js_static_require/version"
+require "guard/js-static-require/version"
 
 Gem::Specification.new do |s|
   s.name        = "guard-js-static-require"

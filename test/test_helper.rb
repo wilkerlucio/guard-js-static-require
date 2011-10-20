@@ -1,2 +1,2 @@
 require "minitest/unit"
-require "guard/js_static_require"
+require "guard/js-static-require"
