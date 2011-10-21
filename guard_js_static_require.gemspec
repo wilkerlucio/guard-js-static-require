@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Wilker Lucio"]
   s.email       = ["wilkerlucio@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Automatic replace script tags for loading files}
+  s.description = %q{This guard watches for new/removed javascript files and automatic inject the script tags for loading them on an html page.}
 
   s.rubyforge_project = "guard-js-static-require"
 
@@ -18,8 +18,6 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
   s.add_development_dependency "guard-minitest"
   s.add_development_dependency "growl_notify"
-  # s.add_runtime_dependency "rest-client"
 end
